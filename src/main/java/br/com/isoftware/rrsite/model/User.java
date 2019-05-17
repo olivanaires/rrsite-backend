@@ -18,6 +18,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.NaturalId;
+import org.hibernate.envers.Audited;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,7 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * Created by @author olivanaires on 11/05/2019.
  */
-
+@Audited
 @Entity
 @Table(name = "users")
 public class User extends BaseClass implements UserDetails {
@@ -51,7 +52,7 @@ public class User extends BaseClass implements UserDetails {
 	private String email;
 
 	@JsonIgnore
-	@NotBlank
+	@NotBlank()
 	@Size(max = 100)
 	private String password;
 
@@ -65,8 +66,13 @@ public class User extends BaseClass implements UserDetails {
 	public User() {
 	}
 
+	public User(String name, String username, String email) {
+		this.name = name;
+		this.username = username;
+		this.email = email;
+	}
+
 	public User(String name, String username, String email, Set<Role> roles) {
-		super();
 		this.name = name;
 		this.username = username;
 		this.email = email;

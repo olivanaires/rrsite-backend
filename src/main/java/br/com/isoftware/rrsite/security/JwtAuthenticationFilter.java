@@ -50,8 +50,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		} catch (Exception ex) {
 			logger.error("Could not set user authentication in security context", ex);
 		}
-//		response.addHeader("Access-Control-Allow-Headers", "http://localhost:4200");
-//		response.addHeader("Access-Control-Allow-Origin", "http://localhost:4200");
 		filterChain.doFilter(request, response);
 	}
 

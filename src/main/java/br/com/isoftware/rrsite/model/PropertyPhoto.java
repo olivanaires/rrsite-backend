@@ -8,11 +8,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.NotAudited;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * Created by @author olivanaires on 14/05/2019.
  */
+@Audited
 @Entity
 @Table(name = "propertyPhotos")
 public class PropertyPhoto extends BaseClass {
@@ -24,6 +28,7 @@ public class PropertyPhoto extends BaseClass {
 	@JoinColumn(name = "property_id")
 	private Property property;
 
+	@NotAudited
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "file_id")
 	private File file;

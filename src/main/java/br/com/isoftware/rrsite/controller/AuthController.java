@@ -1,6 +1,5 @@
 package br.com.isoftware.rrsite.controller;
 
-import java.net.URI;
 import java.util.Collections;
 
 import javax.validation.Valid;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.isoftware.rrsite.model.Role;
 import br.com.isoftware.rrsite.model.User;
@@ -73,25 +71,22 @@ public class AuthController {
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequestVO signUpRequest) {
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-			return new ResponseEntity<>("Username is already taken!", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Username existente!", HttpStatus.BAD_REQUEST);
 		}
 
 		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-			return new ResponseEntity<>("Email Address already in use!", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>("Email existente!", HttpStatus.BAD_REQUEST);
 		}
 
-		User user = new User(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail(), signUpRequest.getPassword());
+		User user = new User(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail());
 
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 
 		Role userRole = roleRepository.findByName(RoleName.ROLE_CLIENT);
-
 		user.setRoles(Collections.singleton(userRole));
 
-		User result = userRepository.save(user);
+		userRepository.save(user);
 
-		URI location = ServletUriComponentsBuilder.fromCurrentContextPath().path("/users/{username}").buildAndExpand(result.getUsername()).toUri();
-
-		return ResponseEntity.created(location).body(new DefaultResponseVO("User registered successfully"));
+		return ResponseEntity.ok(new DefaultResponseVO("User registered successfully"));
 	}
 }

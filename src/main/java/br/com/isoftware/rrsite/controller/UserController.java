@@ -1,7 +1,6 @@
 package br.com.isoftware.rrsite.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,19 +15,18 @@ import br.com.isoftware.rrsite.security.CurrentUser;
  * Created by @author olivanaires on 11/05/2019.
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 public class UserController {
 
 	@Autowired
 	private UserRepository userRepository;
 
-	@GetMapping("/user/me")
-	@PreAuthorize("hasRole('CLIENT')")
+	@GetMapping("/me")
 	public User getCurrentUser(@CurrentUser User currentUser) {
 		return currentUser;
 	}
 
-	@GetMapping("/users/{username}")
+	@GetMapping("/{username}")
 	public User getUserProfile(@PathVariable(value = "username") String username) {
 		User user = userRepository.findByUsername(username).orElseThrow(() -> new ResourceNotFoundException("User", "username", username));
 		return user;
