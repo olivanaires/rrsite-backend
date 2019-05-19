@@ -26,7 +26,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Audited
 @MappedSuperclass
 @EntityListeners({ AuditingEntityListener.class })
-public abstract class BaseClass implements Serializable {
+public abstract class BaseModel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

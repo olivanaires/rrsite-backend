@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Audited
 @Entity
 @Table(name = "propertyPhotos")
-public class PropertyPhoto extends BaseClass {
+public class PropertyPhoto extends BaseModel {
 
 	private static final long serialVersionUID = 1L;
 

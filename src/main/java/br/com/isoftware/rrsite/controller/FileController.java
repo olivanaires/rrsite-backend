@@ -26,7 +26,9 @@ import br.com.isoftware.rrsite.service.FileService;
  */
 @RestController
 @RequestMapping("/api/file")
-public class FileController {
+public class FileController extends BaseController {
+	
+	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private FileService fileService;

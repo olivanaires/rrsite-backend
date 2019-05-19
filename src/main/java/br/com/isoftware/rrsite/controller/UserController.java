@@ -16,7 +16,9 @@ import br.com.isoftware.rrsite.security.CurrentUser;
  */
 @RestController
 @RequestMapping("/api/user")
-public class UserController {
+public class UserController extends BaseController {
+	
+	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private UserRepository userRepository;

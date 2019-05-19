@@ -33,7 +33,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Audited
 @Entity
 @Table(name = "users")
-public class User extends BaseClass implements UserDetails {
+public class User extends BaseModel implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 

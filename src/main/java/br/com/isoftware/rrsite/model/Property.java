@@ -23,7 +23,7 @@ import br.com.isoftware.rrsite.model.enums.PropertyType;
 @Audited
 @Entity
 @Table(name = "properties")
-public class Property extends BaseClass {
+public class Property extends BaseModel {
 
 	private static final long serialVersionUID = 1L;
 

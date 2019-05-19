@@ -15,7 +15,7 @@ import br.com.isoftware.rrsite.model.enums.FileType;
  */
 @Entity
 @Table(name = "files")
-public class File extends BaseClass {
+public class File extends BaseModel {
 
 	private static final long serialVersionUID = 1L;
 

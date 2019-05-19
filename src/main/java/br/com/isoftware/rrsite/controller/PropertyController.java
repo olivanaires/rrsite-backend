@@ -26,7 +26,9 @@ import br.com.isoftware.rrsite.service.PropertyService;
  */
 @RestController
 @RequestMapping("/api/property")
-public class PropertyController {
+public class PropertyController extends BaseController {
+	
+	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	private PropertyService propertyService;

@@ -1,31 +1,21 @@
 package br.com.isoftware.rrsite.controller;
 
-import java.util.Collections;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.isoftware.rrsite.model.Role;
 import br.com.isoftware.rrsite.model.User;
-import br.com.isoftware.rrsite.model.enums.RoleName;
-import br.com.isoftware.rrsite.model.vo.DefaultResponseVO;
 import br.com.isoftware.rrsite.model.vo.LoginRequestVO;
-import br.com.isoftware.rrsite.model.vo.SignUpRequestVO;
-import br.com.isoftware.rrsite.repository.RoleRepository;
-import br.com.isoftware.rrsite.repository.UserRepository;
 import br.com.isoftware.rrsite.security.JwtTokenProvider;
 
 /**
@@ -33,23 +23,16 @@ import br.com.isoftware.rrsite.security.JwtTokenProvider;
  */
 @RestController
 @RequestMapping("/api/auth")
-public class AuthController {
+public class AuthController extends BaseController {
+	
+	private static final long serialVersionUID = 1L;
 
 	@Autowired
-	AuthenticationManager authenticationManager;
+	private AuthenticationManager authenticationManager;
 
 	@Autowired
-	UserRepository userRepository;
-
-	@Autowired
-	RoleRepository roleRepository;
-
-	@Autowired
-	PasswordEncoder passwordEncoder;
-
-	@Autowired
-	JwtTokenProvider tokenProvider;
-
+	private JwtTokenProvider tokenProvider;
+	
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequestVO loginRequest) {
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsernameOrEmail(), loginRequest.getPassword()));
@@ -67,26 +50,5 @@ public class AuthController {
 	public void deauthorizeUser() {
 		SecurityContextHolder.getContext().setAuthentication(null);
 	}
-
-	@PostMapping("/signup")
-	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequestVO signUpRequest) {
-		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-			return new ResponseEntity<>("Username existente!", HttpStatus.BAD_REQUEST);
-		}
-
-		if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-			return new ResponseEntity<>("Email existente!", HttpStatus.BAD_REQUEST);
-		}
-
-		User user = new User(signUpRequest.getName(), signUpRequest.getUsername(), signUpRequest.getEmail());
-
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
-
-		Role userRole = roleRepository.findByName(RoleName.ROLE_CLIENT);
-		user.setRoles(Collections.singleton(userRole));
-
-		userRepository.save(user);
-
-		return ResponseEntity.ok(new DefaultResponseVO("User registered successfully"));
-	}
+	
 }
