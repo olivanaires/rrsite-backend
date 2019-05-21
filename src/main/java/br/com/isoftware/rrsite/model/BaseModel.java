@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 
-import org.hibernate.envers.Audited;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -23,7 +22,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 /**
  * Created by @author olivanaires on 15/05/2019.
  */
-@Audited
 @MappedSuperclass
 @EntityListeners({ AuditingEntityListener.class })
 public abstract class BaseModel implements Serializable {

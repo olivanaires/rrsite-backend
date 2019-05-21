@@ -12,15 +12,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import org.hibernate.envers.Audited;
-import org.hibernate.envers.NotAudited;
-
 import br.com.isoftware.rrsite.model.enums.PropertyType;
 
 /**
  * Created by @author olivanaires on 14/05/2019.
  */
-@Audited
 @Entity
 @Table(name = "properties")
 public class Property extends BaseModel {
@@ -34,7 +30,6 @@ public class Property extends BaseModel {
 	@Enumerated(EnumType.STRING)
 	private PropertyType type;
 
-	@NotAudited
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "address_id")
 	private Address address;

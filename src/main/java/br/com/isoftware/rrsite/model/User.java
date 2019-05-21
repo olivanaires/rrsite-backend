@@ -18,7 +18,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.NaturalId;
-import org.hibernate.envers.Audited;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,7 +29,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * Created by @author olivanaires on 11/05/2019.
  */
-@Audited
 @Entity
 @Table(name = "users")
 public class User extends BaseModel implements UserDetails {

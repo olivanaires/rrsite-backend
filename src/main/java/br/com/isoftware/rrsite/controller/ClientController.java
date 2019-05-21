@@ -13,7 +13,6 @@ import br.com.isoftware.rrsite.model.Client;
 import br.com.isoftware.rrsite.model.vo.DefaultResponseVO;
 import br.com.isoftware.rrsite.model.vo.SignUpRequestVO;
 import br.com.isoftware.rrsite.repository.ClientRepository;
-import io.swagger.annotations.ApiOperation;
 
 /**
  * Created by @author olivanaires on 17/05/2019.
@@ -27,7 +26,6 @@ public class ClientController extends BaseController {
 	@Autowired
 	private ClientRepository clientRepository;
 
-	@ApiOperation(value = "Create a new client.", response = String.class)
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequestVO signUpRequest) {
 		clientRepository.save(new Client(signUpRequest));

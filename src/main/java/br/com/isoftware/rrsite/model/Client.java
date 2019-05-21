@@ -10,15 +10,12 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.envers.Audited;
-
 import br.com.isoftware.rrsite.model.enums.Interest;
 import br.com.isoftware.rrsite.model.vo.SignUpRequestVO;
 
 /**
  * Created by @author olivanaires on 17/05/2019.
  */
-@Audited
 @Entity
 @Table(name="clients")
 public class Client extends BaseModel {

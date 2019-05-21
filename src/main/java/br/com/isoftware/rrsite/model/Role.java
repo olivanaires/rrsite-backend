@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.NaturalId;
-import org.hibernate.envers.Audited;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -21,7 +20,6 @@ import br.com.isoftware.rrsite.model.enums.RoleName;
 /**
  * Created by @author olivanaires on 11/05/2019.
  */
-@Audited
 @Entity
 @Table(name = "roles")
 public class Role implements Serializable {
