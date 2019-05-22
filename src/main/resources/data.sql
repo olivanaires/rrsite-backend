@@ -7,8 +7,14 @@ delete from states;
 insert into roles (id, name) values(1, 'ROLE_ADMIN');
 insert into roles (id, name) values(2, 'ROLE_CLIENT');
 insert into users (id, email, name, password, username) values(1,'olivan@teste.com','olivan','$2a$10$Bd1oc2wcyOSD0YxgpdOcTuU2IAmmjpWZJug41uN2raQE.fegzIIVK','olivan');
+insert into users (id, email, name, password, username) values(2,'rony@teste.com','rony','$2a$10$Bd1oc2wcyOSD0YxgpdOcTuU2IAmmjpWZJug41uN2raQE.fegzIIVK','rony');
+insert into users (id, email, name, password, username) values(3,'rivaldo@teste.com','rivaldo','$2a$10$Bd1oc2wcyOSD0YxgpdOcTuU2IAmmjpWZJug41uN2raQE.fegzIIVK','rivaldo');
 insert into user_roles (user_id, role_id) values(1,1);
 insert into user_roles (user_id, role_id) values(1,2);
+insert into user_roles (user_id, role_id) values(2,1);
+insert into user_roles (user_id, role_id) values(2,2);
+insert into user_roles (user_id, role_id) values(3,1);
+insert into user_roles (user_id, role_id) values(3,2);
 ALTER SEQUENCE users_id_seq RESTART;
 UPDATE users SET id = DEFAULT;
 
