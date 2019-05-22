@@ -63,7 +63,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-				.authorizeRequests().antMatchers("/", "/favicon.ico", "/**/*.png", "/**/*.gif", "/**/*.svg", "/**/*.jpg", "/**/*.map", "/**/*.html", "/**/*.css", "/**/*.js").permitAll()
+				.authorizeRequests().antMatchers(
+						"/", 
+						"/favicon.ico", 
+						"/**/*.png", 
+						"/**/*.gif", 
+						"/**/*.svg", 
+						"/**/*.jpg", 
+						"/**/*.map", 
+						"/**/*.html", 
+						"/**/*.woff",
+						"/**/*.woff2",
+						"/**/*.ttf", 
+						"/**/*.css", 
+						"/**/*.js").permitAll()
 				.antMatchers("/api/auth/**").permitAll()
 				.antMatchers("/api/client/**").permitAll()
 				.antMatchers("/api/file/loadAll").permitAll()
