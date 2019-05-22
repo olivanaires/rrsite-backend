@@ -26,7 +26,6 @@ public class FileService {
 	
 	public void storeFile(MultipartFile file) {
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-		System.out.println(fileName);
 		try {
 			if (fileName.contains("..")) {
 				throw new AppException("Sorry! Filename contains invalid path sequence " + fileName);

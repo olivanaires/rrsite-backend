@@ -28,22 +28,25 @@ public abstract class BaseModel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@JsonIgnore
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@JsonIgnore
 	@CreatedBy
 	@ManyToOne(fetch=FetchType.LAZY)
 	private User createdBy;
 	
+	@JsonIgnore
 	@CreatedDate
 	private LocalDateTime createdDate;
 
+	@JsonIgnore
 	@LastModifiedBy
 	@ManyToOne(fetch=FetchType.LAZY)
 	private User lastModifiedBy;
 
+	@JsonIgnore
 	@LastModifiedDate
 	private LocalDateTime lastModifiedDate;
 
