@@ -22,7 +22,7 @@ public class SignUpRequestVO {
 	@Size(max = 10)
 	private String lastName;
 
-	@Size(max = 11)
+	@NotNull
 	@Column(unique = true)
 	private String cpf;
 
@@ -30,10 +30,8 @@ public class SignUpRequestVO {
 	private String email;
 
 	@NotNull
-	@Size(max = 11)
 	private String contactOne;
 
-	@Size(max = 11)
 	private String contactTwo;
 
 	@Enumerated(EnumType.STRING)
